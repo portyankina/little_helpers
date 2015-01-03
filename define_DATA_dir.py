@@ -1,39 +1,43 @@
+import os
+
+HOME = os.environ['HOME']
+
+
 def define_user_dir():
-    import platform
-    this_comp = platform.node()
-    if this_comp[0:8] == 'macd2657':
-        user_dir = '/Users/gapo7695/'
-    else:
-        user_dir = '/Users/Anya/'
-    
-    return user_dir
+    return HOME
+
 
 def define_DATA_dir():
-    import platform
-    this_comp = platform.node()
-    if this_comp[0:8] == 'macd2657':
-        data_dir = '/Users/gapo7695/Data/'
-    else:
-        data_dir = '/Users/Anya/Data/'
-    
-    return data_dir
-    
+    return HOME + '/Data/'
+
+
 def define_kernels_dir():
-    import platform
-    this_comp = platform.node()
-    if this_comp[0:8] == 'macd2657':
-        kernels_dir = '/Users/gapo7695/Dropbox/SternchenAndMe/SPICE_kernels/'
-    else:
-        kernels_dir = '/Users/Anya/Dropbox/SternchenAndMe/SPICE_kernels/'
-    
-    return kernels_dir
-    
+    return HOME + '/Dropbox/SternchenAndMe/SPICE_kernels/'
+
+
 def define_python_dir():
-    import platform
-    this_comp = platform.node()
-    if this_comp[0:8] == 'macd2657':
-        python_dir = '/Users/gapo7695/Dropbox/myPy'
-    else:
-        python_dir = '/Users/Anya/Dropbox/myPy'
-    
-    return python_dir
+    return HOME + '/Dropbox/myPy'
+
+
+class MyPaths(object):
+    @property
+    def user_dir(self):
+        return define_user_dir()
+
+    @property
+    def DATA_dir(self):
+        return define_DATA_dir()
+
+    @property
+    def kernels_dir(self):
+        return define_kernels_dir()
+
+    @property
+    def python_dir(self):
+        return define_python_dir()
+
+# use like this, if you like:
+# path = MyPaths()
+# path.DATA_dir
+# path.python_dir
+# etc..
