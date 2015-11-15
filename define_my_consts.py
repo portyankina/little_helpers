@@ -51,14 +51,14 @@ beta = 0.002                # drag force  Paterson (1994)
 # Enceladus
 M_Enc = 1.1e20 # mass Enceladus in kg; 1.08022e20 kg
 r_Enc = 2.52e5 # radius Enceladus in m
-Enc_axes = np.array([256.6, 251.4, 248.3])*1e3 # ellipsoid semi-axes in m
+Enc_axes = np.array([256.6, 251.4, 248.3]) # ellipsoid semi-axes in km
 GM_Enc = GravConst*M_Enc
 
 # orbit 
-D_sat_Enc = 2.38e8 # semimajor axis of Enceladus orbit 237948 km = 2.38e5 km = 2.38e8 m = 2.38e10 cm
-p_sat = [D_sat_Enc, 0, 0] # position of Saturn in Enceladus-centered reference frame
+D_Sat_Enc = 2.38e8 # semimajor axis of Enceladus orbit 237948 km = 2.38e5 km = 2.38e8 m = 2.38e10 cm
 omega = 2*np.pi/1.37/24/3600. # angular velocity of Enceladus on the orbit, in rad/s; Period_Enc = 1.370218 d 
 omega2 = omega**2
+omega2vec =[omega**2, omega**2, 0] 
 omega_vec = [0, 0, omega]
 
 # water gas
@@ -72,7 +72,7 @@ dl = 1./(n0*x_sec)
 # Saturn's gravity field
 M_Sat = 568.3e24 # kg or 5.7e29 g
 GM_Sat = GravConst * M_Sat
-g_Sat0 = GM_Sat/(D_sat_Enc**2)
+g_Sat0 = GM_Sat/(D_Sat_Enc**2)
 
 # initial velocity distribution
 sigma0 = np.sqrt(boltzmann*T0/m_H2O)	# sigma to be used in the Boltzmann distribution
@@ -90,4 +90,5 @@ T_h = (np.sqrt(r2_away)-r_Enc)/np.log(T0/T_top)
 #r_expansion = 2e6*V_th0/(Vz0 + V_th0)    
 #c = 1.5e16/r_expansion/2	# density derived from an estimate of the plume size
 
-escape_Larry = 5e27 # molecules per s ?
+escape_Larry = 230/m_H2O # molecules per s ?
+escape_Larry_jets = 50/m_H2O # 50 kg/s 
