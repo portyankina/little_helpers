@@ -8,11 +8,11 @@ def define_user_dir():
 
 
 def define_DATA_dir():
-    return HOME + '/Data/'
+    return HOME + '/Data'
 
 
 def define_kernels_dir():
-    return HOME + '/Dropbox/SternchenAndMe/SPICE_kernels/'
+    return HOME + '/Dropbox/SternchenAndMe/SPICE_kernels'
 
 
 def define_python_dir():
