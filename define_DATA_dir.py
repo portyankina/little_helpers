@@ -3,8 +3,8 @@ import os
 HOME = os.environ['HOME']
 
 
-def define_user_dir():
-    return HOME
+# def os.environ['HOME']:
+#     return HOME
 
 
 def define_DATA_dir():
@@ -22,7 +22,7 @@ def define_python_dir():
 class MyPaths(object):
     @property
     def user_dir(self):
-        return define_user_dir()
+        return os.environ['HOME']
 
     @property
     def DATA_dir(self):

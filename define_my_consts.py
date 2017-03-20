@@ -54,7 +54,15 @@ r_Enc = 2.52e5 # radius Enceladus in m
 Enc_axes = np.array([256.6, 251.4, 248.3]) # ellipsoid semi-axes in km
 GM_Enc = GravConst*M_Enc
 
-# orbit 
+# Europa
+M_Eur = 4.799844e22 # mass Europa in kg
+GM_Eur = GravConst*M_Eur
+Eur_axes = np.array([ 1562.6,  1560.3,  1559.5]) # ellipsoid semi-axes in km
+
+# Europa orbit
+D_Jup_Eur = 6.70900e8 # mean radius of Europa orbit
+
+# Enceladus orbit 
 D_Sat_Enc = 2.38e8 # semimajor axis of Enceladus orbit 237948 km = 2.38e5 km = 2.38e8 m = 2.38e10 cm
 omega = 2*np.pi/1.37/24/3600. # angular velocity of Enceladus on the orbit, in rad/s; Period_Enc = 1.370218 d 
 omega2 = omega**2
@@ -69,10 +77,22 @@ n0 = 1e17		        # assumed surface number density 1e11 in 1/cm3 = 1e17 1/m3 or
 x_sec = 1e-22	        # collisional cross section of H2O in m2 = 1e-15 cm2 Fillion (2004), High resolution photoabsorption and                          # photofragment fluorescence spectroscopy of water between 10.9 and 12 eV, J. Chem. Phys., 120
 dl = 1./(n0*x_sec)
 
+# water ice
+ro_water_ice = 0.9167e6 # 0.9167 g/cm3 in g/m3
+r_ice_grain = 1e-5 # 10 microns in m
+V_ice_grain = 4./3.*np.pi*r_ice_grain**3 # in m3
+m_ice_grain = V_ice_grain * ro_water_ice # in g
+
 # Saturn's gravity field
 M_Sat = 568.3e24 # kg or 5.7e29 g
 GM_Sat = GravConst * M_Sat
 g_Sat0 = GM_Sat/(D_Sat_Enc**2)
+
+# Jupiter's gravity field
+M_Jup = 1.8986e27 # kg 
+GM_Jup = GravConst * M_Jup
+g_Jup0 = GM_Jup/(D_Jup_Eur**2)
+
 
 # initial velocity distribution
 sigma0 = np.sqrt(boltzmann*T0/m_H2O)	# sigma to be used in the Boltzmann distribution

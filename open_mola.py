@@ -2,7 +2,6 @@ import numpy as np
 import gdal
 from gdalconst import *
 from pymars import pdstools
-from local_horizon_map import open_dem
 
 def open_S_mola(filename, lat=90, lon=0, x_points=0, y_points=0):
     
@@ -32,7 +31,7 @@ def open_S_mola(filename, lat=90, lon=0, x_points=0, y_points=0):
         X = R*np.sin(np.deg2rad(lon))
         Y = - R*np.cos(np.deg2rad(lon))
     
-    print X, Y, R   
+    #print X, Y, R   
     I = N/2 + X*RES +  0.5
     J = N/2 + Y*RES + 0.5
     sample = int(I - x_points/2)
@@ -44,7 +43,7 @@ def open_S_mola(filename, lat=90, lon=0, x_points=0, y_points=0):
         y_points = band.YSize
         line = 0
 
-    print sample, line, N, RES
+    #print sample, line, N, RES
     
     if sample < 0:
         sample = 0
@@ -60,5 +59,5 @@ def open_S_mola(filename, lat=90, lon=0, x_points=0, y_points=0):
         print 'subframe is larger then line size in Y direction: shift subframe, i.e. line = ', line
     
     mola = band.ReadAsArray(sample, line, x_points, y_points)*scaling_factor + offset  # *scaling factor of mola + offset
-    return mola, mola_scale
+    return mola, mola_scale, RES # mola_scale in km/pixel
 
